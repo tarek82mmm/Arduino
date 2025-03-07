@@ -1,0 +1,22 @@
+name: Trigger on Push
+
+on:
+  push:
+    branches:
+      - master  
+
+jobs:
+  get_secret:
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+      - name: Bring secret
+        run: |
+          echo "test"
+        
+  call_reusable:
+    uses: ./.github/workflows/reusable-workflow.yaml
+    with:
+      input1: Go
+    secrets:
+      access_key: ${{ github.environment == 'test' && secrets.ACCESS_KEY_TEST || secrets.ACCESS_KEY_PROD }}
