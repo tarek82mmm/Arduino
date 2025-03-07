@@ -9,14 +9,19 @@ jobs:
   get_secret:
     runs-on: ubuntu-latest
     environment: test
+    outputs:
+      ACCESS_KEY: ${{ steps.step1.outputs.ACCESS_KEY }}
     steps:
       - name: Bring secret
+        id: step1
         run: |
           echo "The secret is ${{ secrets.access_key }}"
-        
+          echo "ACCESS_KEY=${{ secrets.access_key }}" >> "$GITHUB_OUTPUT"
+  
   call_reusable:
     uses: ./.github/workflows/reusable-workflow.yaml
+    needs: get_secret
     with:
       input1: Go
     secrets:
-      access_key: ${{ github.environment == 'test' && secrets.ACCESS_KEY_TEST || secrets.ACCESS_KEY_PROD }}
+      access_key: ${{needs.get_secret.outputs.ACCESS_KEY}}
