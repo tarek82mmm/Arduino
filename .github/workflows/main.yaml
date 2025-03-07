@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Bring secret
         run: |
-          echo "test"
+          echo "The secret is ${{ secrets.access_key }}"
         
   call_reusable:
     uses: ./.github/workflows/reusable-workflow.yaml
