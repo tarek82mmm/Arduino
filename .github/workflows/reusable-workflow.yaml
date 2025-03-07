@@ -15,4 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Use secret
-        run: echo "The secret is ${{ secrets.access_key }}"
+        run: |
+          echo "Input1 is: ${{ inputs.input1 }}" 
+          echo "The secret is ${{ secrets.access_key }}"
