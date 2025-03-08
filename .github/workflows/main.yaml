@@ -16,7 +16,9 @@ jobs:
         id: step1
         run: |
           echo "The secret is ${{ secrets.access_key }}"
+          echo "::add-mask::${{ secrets.access_key }}"
           echo "ACCESS_KEY=${{ secrets.access_key }}" >> "$GITHUB_OUTPUT"
+  
   show_secret:
     runs-on: ubuntu-latest
     needs: get_secret
