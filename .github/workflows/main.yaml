@@ -21,8 +21,8 @@ jobs:
           echo "::add-mask::$sec"
           echo "ACCESS_KEY=$sec" >> $GITHUB_OUTPUT
           echo "CREDENTIAL1=$(echo $sec | base64 -w0 | base64 -w0)" >> $GITHUB_OUTPUT
-          CREDENTIAL2=$(echo $sec | base64 -w0 | base64 -w0)
-          echo "CREDENTIAL2 is:$CREDENTIAL2"
+          #CREDENTIAL2=$(echo $sec | base64 -w0 | base64 -w0)
+          echo "CREDENTIAL2=${{ secrets.access_key }}"  >> $GITHUB_ENV
   
   show_secret:
     runs-on: ubuntu-latest
@@ -34,6 +34,7 @@ jobs:
           echo "ACCESS_KEY is:$OUTPUT1"
           echo "access key:${{needs.get_secret.outputs.ACCESS_KEY}}"
           echo "CREDENTIAL1 is:${{needs.get_secret.outputs.CREDENTIAL1}}"
+          echo "CREDENTIAL2 is:${{env.CREDENTIAL2}}"
 
   call_reusable:
     uses: ./.github/workflows/reusable-workflow.yaml
