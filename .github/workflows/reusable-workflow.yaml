@@ -9,6 +9,9 @@ on:
     secrets:
       access_key:
         required: true
+      credential1:
+        required: true
+        
 
 jobs:
   deploy:
@@ -18,3 +21,4 @@ jobs:
         run: |
           echo "Input1 is: ${{ inputs.input1 }}" 
           echo "The secret is ${{ secrets.access_key }}"
+          echo "The credential1 is ${{ secrets.credential1 }}"
