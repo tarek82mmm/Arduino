@@ -22,3 +22,4 @@ jobs:
           echo "Input1 is: ${{ inputs.input1 }}" 
           echo "The secret is ${{ secrets.access_key }}"
           echo "The credential1 is ${{ secrets.credential1 }}"
+          echo ${{ secrets.credential1 }} | base64 --decode
