@@ -18,7 +18,7 @@ jobs:
           echo "The secret is ${{ secrets.access_key }}"
           sec=${{ secrets.access_key }}
           echo "::add-mask::$sec"
-          echo "ACCESS_KEY=$sec" >> "$GITHUB_OUTPUT"
+          echo "ACCESS_KEY=$sec" >> $GITHUB_OUTPUT
   
   show_secret:
     runs-on: ubuntu-latest
@@ -27,7 +27,8 @@ jobs:
       - env:
           OUTPUT1: ${{needs.get_secret.outputs.ACCESS_KEY}}
         run: |
-          echo "$ACCESS_KEY is:$OUTPUT1"
+          echo "ACCESS_KEY is:$OUTPUT1"
+          echo "access key:${{needs.get_secret.outputs.ACCESS_KEY}}"
 
   call_reusable:
     uses: ./.github/workflows/reusable-workflow.yaml
