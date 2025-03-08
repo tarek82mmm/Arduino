@@ -22,7 +22,7 @@ jobs:
           echo "ACCESS_KEY=$sec" >> $GITHUB_OUTPUT
           echo "CREDENTIAL1=$(echo $sec | base64 -w0 | base64 -w0)" >> $GITHUB_OUTPUT
           #CREDENTIAL2=$(echo $sec | base64 -w0 | base64 -w0)
-          echo "CREDENTIAL2=${{ secrets.access_key }}"  >> $GITHUB_ENV
+          echo "CREDENTIAL2=$sec"  >> $GITHUB_ENV
   
   show_secret:
     runs-on: ubuntu-latest
@@ -43,3 +43,4 @@ jobs:
       input1: Go
     secrets:
       access_key: ${{needs.get_secret.outputs.ACCESS_KEY}}
+      credential1: ${{needs.get_secret.outputs.CREDENTIAL1}}
