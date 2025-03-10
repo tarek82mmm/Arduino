@@ -44,3 +44,14 @@ jobs:
     secrets:
       access_key: ${{needs.get_secret.outputs.ACCESS_KEY}}
       credential1: ${{needs.get_secret.outputs.CREDENTIAL1}}
+
+
+  call_reusable2:
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+      - name: Deploy sec
+        uses: ./.github/workflows/reusable-workflow.yaml
+        with:
+          input1: Go
+        secrets: inherit
