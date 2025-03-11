@@ -50,5 +50,4 @@ jobs:
     uses: ./.github/workflows/reusable-workflow.yaml
     with:
       input1: Go
-      deploy_environment: ""
     secrets: inherit
