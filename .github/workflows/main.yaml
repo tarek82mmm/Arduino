@@ -47,11 +47,8 @@ jobs:
 
 
   call_reusable2:
-    runs-on: ubuntu-latest
-    environment: test
-    steps:
-      - name: Deploy sec
-        uses: ./.github/workflows/reusable-workflow.yaml
-        with:
-          input1: Go
-        secrets: inherit
+    uses: ./.github/workflows/reusable-workflow.yaml
+    with:
+      input1: Go
+      deploy_environment: ""
+    secrets: inherit
