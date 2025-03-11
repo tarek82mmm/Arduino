@@ -6,6 +6,10 @@ on:
       input1:
         required: true
         type: string
+      deploy_environment:
+        required: false
+        default: ' '
+        type: string
     secrets:
       access_key:
         required: true
@@ -16,6 +20,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:  ${{ inputs.deploy_environment }}" 
     steps:
       - name: Use secret
         run: |
